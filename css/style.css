@@ -66,11 +66,11 @@ main img {
     border-radius: 5px;
 }
 
- #minhas-experiencias {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+#minhas-experiencias {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
 .instituicao-imagem {
     display: flex;
@@ -93,7 +93,7 @@ main img {
 }
 
 
-.explicao-tecnologia{
+.explicao-tecnologia {
     display: none;
     justify-content: center;
     align-items: center;
@@ -102,12 +102,13 @@ main img {
     height: 60px;
     padding-left: 52px;
     padding-right: 52px;
-    background-color: #cedcfc;
-    color: #0104a8;
-    border-radius: 35px;
+    background-color: #012068;
+    color: #fafafa;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
 }
 
-.show-tec{
+.show-tec {
     display: flex;
 }
 
@@ -120,9 +121,10 @@ main img {
     height: 60px;
     padding-left: 52px;
     padding-right: 52px;
-    background-color: #cedcfc;
-    color: #0104a8;
-    border-radius: 35px;
+    background-color: #012068;
+    color: #fafafa;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
 }
 
 .tempo {
@@ -275,7 +277,7 @@ main img {
         color: #555;
     }
 
-   
+
 
     .img-contato,
     .instituicao-imagem img {
@@ -287,15 +289,18 @@ main img {
     .instituicao-periodo {
         padding-left: 42px;
     }
+
     .explicao-tecnologia,
-    .explicao-experiencia{
+    .explicao-experiencia {
         height: 110px;
     }
+
     .explicao-tecnologia p,
-    .explicao-experiencia p{
-        color: #090a4b;
+    .explicao-experiencia p {
+        color: #ffffff;
         font-size: 12px;
     }
+
     .tempo {
         font-size: 11px;
     }

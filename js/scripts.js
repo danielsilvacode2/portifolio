@@ -2,6 +2,7 @@ const tecnologias = document.querySelectorAll('.tec');
 const containerExplicacao = document.querySelector('.explicao-tecnologia');
 const textoExplicativo = document.querySelector('#texto-explicativo');
 
+
 tecnologias.forEach(tec => {
     tec.addEventListener('click', () => {
 
@@ -18,3 +19,4 @@ tecnologias.forEach(tec => {
         }
     });
 });
+
