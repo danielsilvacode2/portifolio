@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/scripts.js"></script>
+
 </head>
 
 <body>
@@ -19,6 +19,7 @@
     <main>
 
         <section id="sobre-mim">
+
             <h2>Sobre <span>mim</span></h2>
             <p>Olá! Sou Daniel Alves, estudante de Engenharia de Software na UCSAL e entusiasta da tecnologia desde os
                 primeiros contatos com hardware e ferramentas. Para mim, desenvolver software não é apenas escrever
@@ -37,7 +38,7 @@
 
         <section id="minhas-experiencias">
 
-            <h2> <span>Experiencias</span></h2>
+            <h2> <span>Experiências</span></h2>
 
             <section class="experiencia">
 
@@ -50,6 +51,12 @@
                 <div class="experiencia-periodo">
                     <p>Estagio de nivel médio</p>
                     <p class="tempo">Jan 2023 - Jan 2025</p>
+                </div>
+
+                <div class="explicao-experiencia">
+                    <p>Auxiliar administrativo responsável pela notificação de processos por meio telefônico a juízes e
+                        desembargadores, além do apoio em outras atividades administrativas.
+                    </p>
                 </div>
 
 
@@ -67,7 +74,14 @@
                     <p class="tempo">Mar 2025 - Out 2025</p>
                 </div>
 
+                <div class="explicao-experiencia">
+                    <p>Auxiliar administrativo responsável pela notificação de processos por meio telefônico a juízes e
+                        desembargadores, além do apoio em outras atividades administrativas.
+                    </p>
+                </div>
+
             </section>
+
 
             <section class="experiencia">
 
@@ -82,6 +96,12 @@
                     <p class="tempo">Nov 2025 - Atual</p>
                 </div>
 
+                <div class="explicao-experiencia">
+                    <p>Auxiliar no monitoramento de vendas da IA da empresa, registrando erros e acertos para melhorias
+                        contínuas dos processos.
+                    </p>
+                </div>
+
             </section>
 
         </section>
@@ -89,7 +109,7 @@
         <section id="formacao-academica">
 
 
-            <h2> <span> Formacao academica</span> </h2>
+            <h2> <span> Formação acadêmica</span> </h2>
             <section class="instituicao">
 
 
@@ -132,23 +152,35 @@
 
             <ol>
 
-                <button class="rgb">Java</button>
-                <button class="rgb">Spring</button>
-                <button class="rgb">Golang</button>
-                <button class="rgb">Git</button>
-                <button class="rgb">MySQL</button>
-                <button class="rgb">PostgreSQL</button>
-                <button class="rgb">Docker</button>
-                <button class="rgb">HTML5</button>
-                <button class="rgb">Javascript</button>
-                <button class="rgb">CSS3</button>
-
+                <button class="rgb tec"
+                    data-desc="Java é uma linguagem robusta orientada a objetos bastante presente no mercado">Java</button>
+                <button class="rgb tec"
+                    data-desc="Spring é um framework do java responsavel por automatizar configurações manuais ">Spring</button>
+                <button class="rgb tec"
+                    data-desc="Go (ou Golang) é uma linguagem de programação de código aberto criada pelo Google em 2007 e lançada em 2009, focada em simplicidade, eficiência e alta performance">Golang</button>
+                <button class="rgb tec"
+                    data-desc="O Git é um sistema de controle de versão distribuído, gratuito e de código aberto, utilizado para rastrear mudanças em arquivos e coordenar o trabalho em projetos de software">Git</button>
+                <button class="rgb tec"
+                    data-desc="MySQL é um sistema de gerenciamento de banco de dados relacional (SGBDR) de código aberto, amplamente utilizado para armazenar, organizar e recuperar dados estruturados usando a linguagem SQL">MySQL</button>
+                <button class="rgb tec"
+                    data-desc="O PostgreSQL (ou Postgres) é um sistema de gerenciamento de banco de dados objeto-relacional (SGBDOR) de código aberto, renomado pela sua robustez, confiabilidade e conformidade com os padrões SQL.">PostgreSQL</button>
+                <button class="rgb tec"
+                    data-desc="Docker é uma plataforma de código aberto que automatiza a implantação de aplicações em contêineres, empacotando o código e suas dependências (bibliotecas, configurações) em um único pacote leve.">Docker</button>
+                <button class="rgb tec"
+                    data-desc="HTML (HyperText Markup Language) é a linguagem de marcação padrão para criar a estrutura e o conteúdo de websites, definindo elementos como títulos, parágrafos, imagens e link">HTML5</button>
+                <button class="rgb tec"
+                    data-desc="JavaScript é uma linguagem de programação fundamental para a web, usada para tornar páginas estáticas em experiências dinâmicas e interativas, como animações, mapas e atualização de conteúdos sem recarregar a página">JavaScript</button>
+                <button class="rgb tec"
+                    data-desc="CSS (Cascading Style Sheets, ou Folhas de Estilo em Cascata) é uma linguagem de estilos usada para definir a aparência visual de páginas web criadas em HTML">CSS3</button>
 
 
             </ol>
 
 
-
+            <div class="explicao-tecnologia">
+                <p id="texto-explicativo"></p>
+                </p>
+            </div>
 
         </section>
 
@@ -187,6 +219,8 @@
 
     </footer>
 
+
+    <script src="js/scripts.js"></script>
 
 </body>
 

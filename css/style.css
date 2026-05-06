@@ -29,7 +29,7 @@ header {
     width: 450px;
 }
 
-header img{
+header img {
     width: 150px;
     border-radius: 100px;
 }
@@ -66,6 +66,12 @@ main img {
     border-radius: 5px;
 }
 
+ #minhas-experiencias {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
 .instituicao-imagem {
     display: flex;
     align-items: center;
@@ -75,15 +81,48 @@ main img {
 
 /* --- Tipografia e Textos --- */
 
-#sobre-mim{
+#sobre-mim {
     display: flex;
     flex-direction: column;
-    gap:13px;
+    gap: 13px;
 }
 
 #sobre-mim p {
     color: #535355;
     font-size: 15px;
+}
+
+
+.explicao-tecnologia{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 500px;
+    height: 60px;
+    padding-left: 52px;
+    padding-right: 52px;
+    background-color: #cedcfc;
+    color: #0104a8;
+    border-radius: 35px;
+}
+
+.show-tec{
+    display: flex;
+}
+
+.explicao-experiencia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    max-width: 500px;
+    height: 60px;
+    padding-left: 52px;
+    padding-right: 52px;
+    background-color: #cedcfc;
+    color: #0104a8;
+    border-radius: 35px;
 }
 
 .tempo {
@@ -202,8 +241,12 @@ main img {
 
 
 
-#info-contato h2{
-font-size: 40px;
+#info-contato h2 {
+    font-size: 40px;
+}
+
+#info-contato p {
+    font-size: 20px;
 }
 
 /* --- Media Queries --- */
@@ -231,11 +274,7 @@ font-size: 40px;
         color: #555;
     }
 
-    #minhas-experiencias {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+   
 
     .img-contato,
     .instituicao-imagem img {
@@ -247,7 +286,15 @@ font-size: 40px;
     .instituicao-periodo {
         padding-left: 42px;
     }
-
+    .explicao-tecnologia,
+    .explicao-experiencia{
+        height: 110px;
+    }
+    .explicao-tecnologia p,
+    .explicao-experiencia p{
+        color: #090a4b;
+        font-size: 12px;
+    }
     .tempo {
         font-size: 11px;
     }
@@ -262,9 +309,9 @@ font-size: 40px;
         width: 75px;
     }
 
-  
 
-    #sobre-mim p{
+
+    #sobre-mim p {
         font-size: 13px;
     }
 
