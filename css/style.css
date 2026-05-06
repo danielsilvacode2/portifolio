@@ -162,6 +162,7 @@ main img {
     border-radius: 5px;
     width: 95px;
     height: 30px;
+    cursor: pointer;
 }
 
 #tecnologias button:hover {
