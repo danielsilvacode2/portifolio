@@ -233,7 +233,7 @@ main img {
 
 .img-contato {
     width: 30px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .mensagem a {
@@ -253,7 +253,7 @@ main img {
 }
 
 /* --- Media Queries --- */
-@media screen and (max-width:400px) {
+@media screen and (max-width:470px) {
     header {
         margin-top: 50px;
         width: 300px;
@@ -279,7 +279,7 @@ main img {
 
 
 
-    .img-contato,
+   
     .instituicao-imagem img {
         width: 30px;
         border-radius: 5px;
