@@ -5,12 +5,15 @@
 }
 
 
+
+
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 80vh;
-
+    height: 100vh;
+    gap: 60px;
     background-color: #faf4ede7;
 }
 
@@ -23,7 +26,7 @@ form {
     gap: 30px;
     width: 400px;
     padding: 20px;
-    height: 400px;
+    height: 550px;
 
 
     box-shadow: 0px 10px 15px 0px rgba(8, 8, 8, 0.671);
@@ -32,6 +35,8 @@ form {
 
 
 }
+
+
 
 span {
     color: #003572;
@@ -98,11 +103,40 @@ select {
 }
 
 .botoes .envio {
-    background-color: #003166;
+    background-color: #278f41;
 }
 
 .botoes .limpeza {
     background-color: transparent;
     border: 1px solid #003572;
     color: #003572;
+}
+
+.msg-erro{
+    font-size: 10px;
+}
+
+
+
+
+.show-view{
+    display: flex;
+}
+
+#protocolo button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   height: 50px;
+   padding: 20px;
+
+   color: white;
+   background-color: #003d10;
+   border: none;
+   border-radius: 10px;
+}
+
+#protocolo button:hover{
+transform: scale(1.05);
+background-color: #009127;
 }

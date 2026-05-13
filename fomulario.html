@@ -11,20 +11,20 @@
 <body>
 
 
-   
 
-        <form action="">
-            
-            <header>
-                <h1> <span>Preencha</span></h1>
-            </header>
 
-            <section class="preenchimento">
+    <form action="">
 
-           
-            <input type="text" placeholder="preencha seu nome" required>
-            <input type="email" placeholder="preencha seu email" required>
-          
+        <header>
+            <h1> <span>Preencha</span></h1>
+        </header>
+
+        <section class="preenchimento">
+
+
+            <input id="nome" type="text" placeholder="preencha seu nome" >
+            <input id="email" type="email" placeholder="preencha seu email" >
+
             <select id="estados" required>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
@@ -54,23 +54,35 @@
                 <option value="SE">Sergipe</option>
                 <option value="TO">Tocantins</option>
             </select>
-            
-            <select  id="cidades" required>
-                <option value="">Selecione uma estado Primeiro</option>
+
+            <select id="cidades" >
+                <option value="">Selecione uma estado primeiro</option>
             </select>
 
-             </section>
+        </section>
 
+    
 
-            <div class="botoes" >
-                    <button class="envio" type="input">Enviar formulario</button>
-                    <button class="limpeza" type="reset">Limpar formulario</button>
+        <div class="botoes" >
+            <button onclick="salvar()"  class="envio" type="button">Enviar formulario</button>
+            <button class="limpeza" type="reset">Limpar formulario</button>
+        </div>
 
-            </div>
+         <div class="g-recaptcha" data-sitekey="6LfMZugsAAAAAGdQeAIS14e049jjP99zCI-5frle">
+        </div>
+        
+    </form>
+    <div id="protocolo">
 
-        </form>
+    
+
+    </div>
+
 
     <script src="js/formulario.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer>
+    </script>
 </body>
 
 </html>
