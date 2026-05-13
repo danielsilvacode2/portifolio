@@ -22,8 +22,8 @@
         <section class="preenchimento">
 
 
-            <input id="nome" type="text" placeholder="preencha seu nome" >
-            <input id="email" type="email" placeholder="preencha seu email" >
+            <input id="nome" type="text" placeholder="preencha seu nome">
+            <input id="email" type="email" placeholder="preencha seu email">
 
             <select id="estados" required>
                 <option value="AC">Acre</option>
@@ -55,28 +55,34 @@
                 <option value="TO">Tocantins</option>
             </select>
 
-            <select id="cidades" >
+            <select id="cidades">
                 <option value="">Selecione uma estado primeiro</option>
             </select>
 
         </section>
 
-    
 
-        <div class="botoes" >
-            <button onclick="salvar()"  class="envio" type="button">Enviar formulario</button>
+
+        <div class="botoes">
+            <button onclick="salvar()" class="envio" type="button">Enviar formulario</button>
             <button class="limpeza" type="reset">Limpar formulario</button>
         </div>
 
-         <div class="g-recaptcha" data-sitekey="6LfMZugsAAAAAGdQeAIS14e049jjP99zCI-5frle">
+        <div class="g-recaptcha" data-sitekey="6LfMZugsAAAAAGdQeAIS14e049jjP99zCI-5frle">
         </div>
-        
+
     </form>
     <div id="protocolo">
-
-    
-
     </div>
+
+
+    <div id="loading-overlay">
+        <div class="loading-card">
+            <div class="spinner"></div>
+            <p>Enviando seus dados...</p>
+        </div>
+    </div>
+
 
 
     <script src="js/formulario.js"></script>

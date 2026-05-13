@@ -39,6 +39,8 @@ estados.addEventListener('change', async function () {
 
 async function salvar() {
 
+     const overlay = document.getElementById('loading-overlay');
+
    try {
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
@@ -53,6 +55,10 @@ async function salvar() {
          alert("Por favor, prove que você não é um robô clicando no reCAPTCHA.");
          return
       }
+
+    
+
+      overlay.style.display = 'flex';
 
       const usuario = {
          nome: nome,
@@ -71,10 +77,10 @@ async function salvar() {
       });
 
 
-     
-       document.querySelector('form').reset();
-       grecaptcha.reset();
-      
+
+      document.querySelector('form').reset();
+      grecaptcha.reset();
+
 
       if (!response.ok) throw new Error(`Erro: ${response.status} `)
 
@@ -85,14 +91,16 @@ async function salvar() {
 
 
       const msgProtocolo = document.createElement('button');
-       msgProtocolo.id ='mgsProtocolo';
-       msgProtocolo.classList.add('show-view');
-       msgProtocolo.textContent = `Cadastro realizado! Protocolo: ${data.protocolo}`
+      msgProtocolo.id = 'mgsProtocolo';
+      msgProtocolo.classList.add('show-view');
+      msgProtocolo.textContent = `Cadastro realizado! Protocolo: ${data.protocolo}`
 
-       protocolo.appendChild(msgProtocolo);
+      protocolo.appendChild(msgProtocolo);
 
    } catch (erro) {
       console.error("Error ao enviar formulario: ", erro)
+   } finally {
+      overlay.style.display = 'none';
    }
 
 }
