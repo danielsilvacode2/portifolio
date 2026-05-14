@@ -19,11 +19,12 @@
             <h1> <span>Preencha</span></h1>
         </header>
 
-        <section class="preenchimento">
+        <section id="preenchimento">
+            
+           
 
-
-            <input id="nome" type="text" placeholder="preencha seu nome">
-            <input id="email" type="email" placeholder="preencha seu email">
+            <input id="nome" type="text" placeholder="PREENCHA SEU NOME">
+            <input id="email" type="email" placeholder="PREENCHA SEU EMAIL">
 
             <select id="estados" required>
                 <option value="AC">Acre</option>
@@ -59,27 +60,30 @@
                 <option value="">Selecione uma estado primeiro</option>
             </select>
 
+            
+
         </section>
 
 
 
         <div class="botoes">
-            <button onclick="salvar()" class="envio" type="button">Enviar formulario</button>
-            <button class="limpeza" type="reset">Limpar formulario</button>
+            <button onclick="salvar()" class="envio" type="button">ENVIAR FORMULARIO</button>
+            <button class="limpeza" type="reset">LIMPAR FORMULARIO</button>
         </div>
 
         <div class="g-recaptcha" data-sitekey="6LfMZugsAAAAAGdQeAIS14e049jjP99zCI-5frle">
         </div>
 
+        
     </form>
     <div id="protocolo">
     </div>
 
 
     <div id="loading-overlay">
-        <div class="loading-card">
+        <div id="loading-card">
             <div class="spinner"></div>
-            <p>Enviando seus dados...</p>
+         
         </div>
     </div>
 

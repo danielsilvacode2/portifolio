@@ -1,172 +1,171 @@
-const estados = document.getElementById('estados')
 
+function mostrarOverlay(mensagem) {
+  const overlay = document.getElementById('loading-overlay');
+  const card = document.getElementById('loading-card');
 
-estados.addEventListener('change', async function () {
-   const uf = this.value;
+  const p = document.createElement('p');
+  p.id = 'loading-message';
+  p.textContent = mensagem;
+  card.appendChild(p);
 
-   const cidades = document.getElementById('cidades')
+  overlay.style.display = 'flex';
+}
 
-   cidades.innerHTML = '<option>Carregando...</option>'
-   cidades.disabled = true;
+function esconderOverlay() {
+  const overlay = document.getElementById('loading-overlay');
+  const msg = document.getElementById('loading-message');
 
-   try {
-
-      const response = await fetch(`https://api-growth.agilize.com.br/v1/outside/cities/uf/${uf}`)
-      const dados = await response.json();
-
-      cidades.innerHTML = '<option value = ""> Selecione a sua cidade </option>'
-
-      dados.payload.forEach(cidade => {
-         const option = document.createElement('option')
-         option.value = cidade.id;
-         option.textContent = cidade.name;
-         cidades.appendChild(option)
-      });
-
-
-      cidades.disabled = false
-
-
-   } catch (erro) {
-      console.error("Error ao buscar dados: ", erro)
-      cidade.innerHTML = '<option>Erro ao carregar </option>'
-   }
+  overlay.style.display = 'none';
+  if (msg) msg.remove();
+}
 
 
 
-})
+const CAMPOS_OBRIGATORIOS = [
+  { id: 'nome',    mensagem: 'O CAMPO NOME É OBRIGATÓRIO'   },
+  { id: 'email',   mensagem: 'O CAMPO EMAIL É OBRIGATÓRIO'  },
+  { id: 'estados', mensagem: 'O CAMPO ESTADO É OBRIGATÓRIO' },
+  { id: 'cidades', mensagem: 'O CAMPO CIDADE É OBRIGATÓRIO' },
+];
 
+function marcarErro(inputId, mensagem) {
+  const input = document.getElementById(inputId);
+  input.classList.add('input-erro');
 
-async function salvar() {
+  const msg = document.createElement('span');
+  msg.className = 'msg-erro';
+  msg.textContent = mensagem;
+  input.insertAdjacentElement('afterend', msg);
+}
 
-   const overlay = document.getElementById('loading-overlay');
-
-   try {
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const estado = document.getElementById('estados').value;
-      const cidade = document.getElementById('cidades').value;
-
-      if (!validar(nome, email, estado, cidade)) return;
-
-      const recaptchaResponse = grecaptcha.getResponse();
-
-      if (recaptchaResponse.length === 0) {
-         alert("Por favor, prove que você não é um robô clicando no reCAPTCHA.");
-         return
-      }
-
-
-
-      overlay.style.display = 'flex';
-
-      const usuario = {
-         nome: nome,
-         email: email,
-         estado: estado,
-         cidade: cidade
-      }
-
-
-
-
-      const response = await fetch('http://localhost:8080/usuario', {
-         method: 'POST',
-         headers: { 'Content-type': 'application/json' },
-         body: JSON.stringify(usuario)
-      });
-
-
-
-      document.querySelector('form').reset();
-      grecaptcha.reset();
-
-
-      if (response.status === 409) {
-         const input = document.getElementById('email');
-         input.classList.add('input-erro');
-
-         const msg = document.createElement('span');
-         msg.className = 'msg-erro';
-         msg.textContent = ' JÁ EXISTE UM USUARIO CADASTRADO COM ESTE E-MAIL ';
-         input.insertAdjacentElement('afterend', msg);
-
-         return;
-      }
-
-      if (!response.ok) throw new Error(`Erro: ${response.status}`);
-
-      const data = await response.json();
-
-
-      const protocolo = document.getElementById('protocolo')
-
-
-      const msgProtocolo = document.createElement('button');
-      msgProtocolo.id = 'mgsProtocolo';
-      msgProtocolo.classList.add('show-view');
-      msgProtocolo.textContent = `Cadastro realizado! Protocolo: ${data.protocolo}`
-
-      protocolo.appendChild(msgProtocolo);
-
-   } catch (erro) {
-      console.error("Error ao enviar formulario: ", erro)
-
-
-   } finally {
-      overlay.style.display = 'none';
-   }
-
+function limparErros() {
+  document.querySelectorAll('.msg-erro').forEach(el => el.remove());
+  document.querySelectorAll('.input-erro').forEach(el => el.classList.remove('input-erro'));
 }
 
 function validar(nome, email, estado, cidade) {
+  limparErros();
 
-   document.querySelectorAll('.msg-erro').forEach(e => e.remove());
-   document.querySelectorAll('.input-erro').forEach(e => e.classList.remove('input-erro'));
+  const valores = { nome, email, estados: estado, cidades: cidade };
+  let valido = true;
 
-   const campos = [
-      { id: 'nome', valor: nome, mensagem: 'O CAMPO NOME É OBRIGATORIO ' },
-      { id: 'email', valor: email, mensagem: 'O CAMPO EMAIL É OBRIGATORIO' },
-      { id: 'estados', valor: estado, mensagem: 'O CAMPO ESTADO É OBRIGATORIO ' },
-      { id: 'cidades', valor: cidade, mensagem: 'O CAMPO CIDADE É OBRIGATORIO ' },
-   ];
-
-   let valido = true;
-
-   campos.forEach(campo => {
-      if (!campo.valor || campo.valor.trim() === '') {
-         valido = false;
-
-         const input = document.getElementById(campo.id);
-         input.classList.add('input-erro');
-
-         const msg = document.createElement('span');
-         msg.className = 'msg-erro';
-         msg.textContent = ` ${campo.mensagem}`;
-         input.insertAdjacentElement('afterend', msg);
-      }
-   });
-
-   if (email && !email.includes('@')) {
+  CAMPOS_OBRIGATORIOS.forEach(({ id, mensagem }) => {
+    if (!valores[id]?.trim()) {
+      marcarErro(id, mensagem);
       valido = false;
+    }
+  });
 
-      const input = document.getElementById('email');
-      input.classList.add('input-erro');
+  if (email && !email.includes('@')) {
+    marcarErro('email', 'Email inválido');
+    valido = false;
+  }
 
-      const msg = document.createElement('span');
-      msg.className = 'msg-erro';
-      msg.textContent = ' Email inválido';
-      input.insertAdjacentElement('afterend', msg);
-   }
-
-   return valido;
+  return valido;
 }
 
 
+
+document.getElementById('estados').addEventListener('change', async function () {
+  const uf = this.value;
+  const cidades = document.getElementById('cidades');
+
+  cidades.innerHTML = '<option>Carregando...</option>';
+  cidades.disabled = true;
+  mostrarOverlay('Carregando...');
+
+  try {
+    const response = await fetch(`https://api-growth.agilize.com.br/v1/outside/cities/uf/${uf}`);
+    const { payload } = await response.json();
+
+    cidades.innerHTML = '<option value="">Selecione a sua cidade</option>';
+    payload.forEach(({ id, name }) => {
+      const option = document.createElement('option');
+      option.value = id;
+      option.textContent = name;
+      cidades.appendChild(option);
+    });
+
+    cidades.disabled = false;
+  } catch (erro) {
+    console.error('Erro ao buscar cidades:', erro);
+    cidades.innerHTML = '<option>Erro ao carregar</option>';
+  } finally {
+    esconderOverlay();
+  }
+});
+
+
+
+async function salvar() {
+  const nome   = document.getElementById('nome').value;
+  const email  = document.getElementById('email').value;
+  const estado = document.getElementById('estados').value;
+  const cidades = document.getElementById('cidades');
+
+
+  const cidade = cidades.options[cidades.selectedIndex].text;
+
+  if (!validar(nome, email, estado, cidade)) return;
+
+  if (!grecaptcha.getResponse()) {
+    alert('Por favor, prove que você não é um robô clicando no reCAPTCHA.');
+    return;
+  }
+
+  mostrarOverlay('Enviando os seus dados...');
+
+  try {
+    const response = await fetch('http://localhost:8080/usuario', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, estado, cidade }),
+    });
+
+    document.querySelector('form').reset();
+    grecaptcha.reset();
+
+    if (response.status === 409) {
+      marcarErro('email', 'JÁ EXISTE UM USUÁRIO CADASTRADO COM ESTE E-MAIL');
+      return;
+    }
+
+    if(response.status === 429){
+      console.log("abriu o if")
+      marcarErro('preenchimento', 'VOCÊ TENTOU MUITAS VEZES AGUARDE UM POUCO')
+      return
+    }
+
+
+
+    if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+
+    const { protocolo } = await response.json();
+    exibirProtocolo(protocolo);
+
+  } catch (erro) {
+    console.error('Erro ao enviar formulário:', erro);
+  } finally {
+    esconderOverlay();
+  }
+}
+
+function exibirProtocolo(protocolo) {
+  const btn = document.createElement('button');
+  btn.id = 'mgsProtocolo';
+  btn.classList.add('show-view');
+  btn.textContent = `Cadastro realizado! Protocolo: ${protocolo}`;
+  const seletorProtocolo = document.getElementById('protocolo');
+  seletorProtocolo.innerHTML = '';
+  seletorProtocolo.appendChild(btn);
+}
+
+// ─── Limpeza de erros em tempo real ──────────────────────────────────────────
+
 document.querySelectorAll('input, select').forEach(input => {
-   input.addEventListener('input', () => {
-      input.classList.remove('input-erro');
-      const msg = input.nextElementSibling;
-      if (msg?.classList.contains('msg-erro')) msg.remove();
-   });
+  input.addEventListener('input', () => {
+    input.classList.remove('input-erro');
+    const msg = input.nextElementSibling;
+    if (msg?.classList.contains('msg-erro')) msg.remove();
+  });
 });
