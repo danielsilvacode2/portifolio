@@ -39,11 +39,11 @@ form {
 
 
 span {
-    color: #003572;
+    color: #005cc5;
 }
 
 h1{
-    border-bottom: 2px solid #002349 ;
+    border-bottom: 2px solid #005cc5 ;
     border-radius: 5px;
 }
 
@@ -100,10 +100,11 @@ select {
 
 .botoes button:hover {
     transform: scale(1.05);
+    background-color: #004492;
 }
 
 .botoes .envio {
-    background-color: #278f41;
+    background-color:  #005cc5;
 }
 
 .botoes .limpeza {
@@ -114,6 +115,7 @@ select {
 
 .msg-erro{
     font-size: 10px;
+    color: rgb(230, 0, 0);
 }
 
 

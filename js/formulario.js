@@ -39,7 +39,7 @@ estados.addEventListener('change', async function () {
 
 async function salvar() {
 
-     const overlay = document.getElementById('loading-overlay');
+   const overlay = document.getElementById('loading-overlay');
 
    try {
       const nome = document.getElementById('nome').value;
@@ -56,7 +56,7 @@ async function salvar() {
          return
       }
 
-    
+
 
       overlay.style.display = 'flex';
 
@@ -82,7 +82,19 @@ async function salvar() {
       grecaptcha.reset();
 
 
-      if (!response.ok) throw new Error(`Erro: ${response.status} `)
+      if (response.status === 409) {
+         const input = document.getElementById('email');
+         input.classList.add('input-erro');
+
+         const msg = document.createElement('span');
+         msg.className = 'msg-erro';
+         msg.textContent = ' JÁ EXISTE UM USUARIO CADASTRADO COM ESTE E-MAIL ';
+         input.insertAdjacentElement('afterend', msg);
+
+         return;
+      }
+
+      if (!response.ok) throw new Error(`Erro: ${response.status}`);
 
       const data = await response.json();
 
@@ -99,6 +111,8 @@ async function salvar() {
 
    } catch (erro) {
       console.error("Error ao enviar formulario: ", erro)
+
+
    } finally {
       overlay.style.display = 'none';
    }
@@ -111,10 +125,10 @@ function validar(nome, email, estado, cidade) {
    document.querySelectorAll('.input-erro').forEach(e => e.classList.remove('input-erro'));
 
    const campos = [
-      { id: 'nome', valor: nome, mensagem: 'Nome é obrigatório' },
-      { id: 'email', valor: email, mensagem: 'Email é obrigatório' },
-      { id: 'estados', valor: estado, mensagem: 'Estado é obrigatório' },
-      { id: 'cidades', valor: cidade, mensagem: 'Cidade é obrigatória' },
+      { id: 'nome', valor: nome, mensagem: 'O CAMPO NOME É OBRIGATORIO ' },
+      { id: 'email', valor: email, mensagem: 'O CAMPO EMAIL É OBRIGATORIO' },
+      { id: 'estados', valor: estado, mensagem: 'O CAMPO ESTADO É OBRIGATORIO ' },
+      { id: 'cidades', valor: cidade, mensagem: 'O CAMPO CIDADE É OBRIGATORIO ' },
    ];
 
    let valido = true;
