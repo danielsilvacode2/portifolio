@@ -36,7 +36,7 @@ function esconderErroCaptcha() {
 
    const erroCaptcha = document.getElementById('erro-recaptcha');
    const p = document.getElementById('msg-ErroCaptcha')
-   p.textContent = 'CONFIRME QUE VOCÊ NÃO É UM ROBO'
+  if (p) p.textContent = 'CONFIRME QUE VOCÊ NÃO É UM ROBO'
    
 
    erroCaptcha.style.display = 'none';
@@ -166,8 +166,6 @@ async function salvar() {
          console.log("abriu o if")
          marcarErro('preenchimento', 'VOCÊ TENTOU MUITAS VEZES AGUARDE UM POUCO')
          return
-
-
       }
 
 
@@ -175,7 +173,7 @@ async function salvar() {
       if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
 
       const { protocolo } = await response.json();
-      exibirProtocolo(protocolo);
+      exibirProtocolo();
 
    } catch (erro) {
       console.error('Erro ao enviar formulário:', erro);
@@ -184,17 +182,17 @@ async function salvar() {
    }
 }
 
-function exibirProtocolo(protocolo) {
+function exibirProtocolo() {
    const btn = document.createElement('button');
    btn.id = 'mgsProtocolo';
    btn.classList.add('show-view');
-   btn.textContent = `Cadastro realizado! Protocolo: ${protocolo}`;
+   btn.textContent = `Cadastro realizado! O protocolo de atendimento foi enviado ao seu email`;
    const seletorProtocolo = document.getElementById('protocolo');
    seletorProtocolo.innerHTML = '';
    seletorProtocolo.appendChild(btn);
 }
 
-// ─── Limpeza de erros em tempo real ──────────────────────────────────────────
+
 
 document.querySelectorAll('input, select').forEach(input => {
    input.addEventListener('input', () => {
