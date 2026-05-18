@@ -85,6 +85,8 @@ function validar(nome, email, estado, cidade) {
       valido = false;
    }
 
+   
+
    if (cidade == 'Selecione a sua cidade' || cidade == 'Selecione um estado primeiro') {
       marcarErro('cidades', 'O CAMPO CIDADE É OBRIGATORIO');
       valido = false;
